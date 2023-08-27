@@ -43,6 +43,8 @@ class ccolor:
     BOLD = '\033[1m'
     ENDC = '\033[0m'
 
+
+
 def handle_msg(data, user):
     '''
     Handles incoming messages
@@ -75,6 +77,7 @@ def handle_msg(data, user):
     #If the user send a message
     elif data[0] == MSG.CL_MSG:
         send_msg(data[1:], user)
+
 
 def new_connection(data, user):
     '''
@@ -213,8 +216,17 @@ def send_msg(data, user):
                       recv_msg_len,
                       recv_msg.encode("utf-8"))
     sendto_others(msg, user)
+    store_info(recv_msg, user)
 
     print("[CHAT] " + username + ": " + recv_msg)
+
+
+def store_info(message, user):
+    ''' Add Message into Pandas'''
+
+def printStats():
+    '''Create Diagram to Pandas Table'''
+
 
 def handle_input(data):
     if data == "help":
@@ -226,7 +238,8 @@ def handle_input(data):
     elif data == "stop":
         global running
         running = False
-    
+    elif data == "stats":
+        printStats()
     else:
         print(ccolor.WARNING + "No such command: " + data + ccolor.ENDC)
 
