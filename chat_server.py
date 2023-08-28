@@ -4,6 +4,8 @@ import struct
 import signal
 import time
 from select import select
+import pandas as pd
+import numpy as np
 
 running = True
 
@@ -15,6 +17,7 @@ sock = None
 #Hashmap of connections identifiable by the name
 connections = {}
 keep_alives = {}
+data_storage = {}
 
 class MSG:
     '''
@@ -224,6 +227,10 @@ def send_msg(data, user):
 def store_info(message, user):
     ''' Add Message into Pandas'''
 
+    new_row = [user, message, np.datetime64('now')]
+    data_storage.loc[len(data_storage)] = new_row
+
+
 def printStats():
     '''Create Diagram to Pandas Table'''
 
@@ -251,6 +258,19 @@ if __name__ == "__main__":
 
     #Create signal handler for SIGINT
     signal.signal(signal.SIGINT, on_SIGINT)
+    #Create Pandas
+    #data_storage = pd.DataFrame(columns=['time_of_message', 'message', 'user'])
+    dtypes = np.dtype(
+        [
+            ("user", str),
+            ("message", str),
+            ("time_of_message", np.datetime64),
+        ]
+    )
+    data_storage = pd.DataFrame(np.empty(0, dtype=dtypes))
+
+
+
 
     #Create a new socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
