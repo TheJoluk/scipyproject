@@ -6,7 +6,7 @@ import time
 from select import select
 import pandas as pd
 import numpy as np
-
+import matplotlib.pyplot as plt
 running = True
 
 IP = "localhost"
@@ -219,26 +219,39 @@ def send_msg(data, user):
                       recv_msg_len,
                       recv_msg.encode("utf-8"))
     sendto_others(msg, user)
-    store_info(recv_msg, user)
+    store_info(recv_msg,username,user)
 
     print("[CHAT] " + username + ": " + recv_msg)
 
 
-def store_info(message, user):
+def store_info(message, user, userIP):
     ''' Add Message into Pandas'''
 
-    new_row = [user, message, np.datetime64('now')]
+    new_row = [user,userIP[0], message, np.datetime64('now')]
     data_storage.loc[len(data_storage)] = new_row
 
 
 def printStats():
     '''Create Diagram to Pandas Table'''
 
+    grp = data_storage.groupby(by=[data_storage.time_of_message.map(lambda x: (x.hour, x.minute))])
+    grouped = grp.count()
+    print(grouped[['user']])
+    plt.figure()
+    graph = grouped.plot(legend=False)
+    graph.set_xlabel("Time of Message in CET+0'")
+    graph.set_ylabel("Amount of Messages")
+    plt.savefig('stats.png')
+
+
+
+
 
 def handle_input(data):
     if data == "help":
         print(ccolor.BOLD + " List of all commands:" + ccolor.ENDC)
         print(ccolor.BOLD + "  help        Prints all commands." + ccolor.ENDC)
+        print(ccolor.BOLD + "  stats       Prints available stats into file" + ccolor.ENDC)
         print(ccolor.BOLD + "  stop        Stops the server." + ccolor.ENDC)
         print(ccolor.BOLD + "  CTRL+C      Stops the server." + ccolor.ENDC)
 
@@ -263,8 +276,9 @@ if __name__ == "__main__":
     dtypes = np.dtype(
         [
             ("user", str),
+            ("user IP",str),
             ("message", str),
-            ("time_of_message", np.datetime64),
+            ("time_of_message", str),
         ]
     )
     data_storage = pd.DataFrame(np.empty(0, dtype=dtypes))
