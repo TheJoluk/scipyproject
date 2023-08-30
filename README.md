@@ -25,11 +25,11 @@ All Libaries are either default packages or easy to install with pip install
 
 
 ## Setup
-Beside the mentioned packages, you only need configure the ip adresse of the 
+Beside the mentioned packages, you only need configure the ip adresse and port of the chat server and to set a username. All can be passed over as startup arguments. If no username is provided you can enter one on launch.
 
 
 ## Usage
-The usage of this project is split into two parts for which each a python file for running the project is provided.
+
 
 
 
