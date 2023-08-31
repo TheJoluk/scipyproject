@@ -1,35 +1,46 @@
 
 ## Motivation
-The Motivation is to create a simple console based chat service with python3. The Chat Client saves all send messages of all users with the corresponding ip adresse to run statistics about the usage and messages.
+The Motivation is to create a simple console based chat service with python3. 
+The Chat Client saves all send messages of all users with the corresponding ip adresse to run statistics about the usage and messages.
 
 ## Goal
-The Goal is to create a Chat Client and Server with Python3. The Chat Services should be able to be able to deal with multiple users and you should be able to enter the user name on launch.
-The Server Adresse can be replaced in the python programm depending on the server location.
+The Goal is to create a Chat Client and Server with Python3. The Chat Services should be able to be able to deal with multiple users.
+The User can setup Username, ServerIP and ServerPort on startup to decide to which server he wants to connect with which username.
+During the chat prozess all chat messages are getting stored in a pandas dataframe to run statistics on them. 
+As an example the statics of messages per minute is getting printed on request.
 
 ## Structure
 The project contains two files, the server and the client.
+The server file provides the backbone of the chat service which takes all the messages send and broadcast them to all the other currently connecte clients.
+Fruthermore the server tracks the message history of all clients.
+
+The client file provides an easy use to connect to the server and to set the username of the user. 
+Beside that the client offers the possibility to request a list of all currently connected users.
 
 ## Requirements
-
-The project needs following python libaries available.
-•  socket
-•  sys
-•  struct
-•  signal
-•  time
-•  select
-•  pandas 
-•  numpy
-•  matplotlib.pyplot 
+The Chat Service only runs on Linux based operating system due to limitation on the unblocking reading of commandline inputs on windows.
+That means on windows the python script is not running.
+Beside the Linux requirement the project needs following python libaries available. <br>
+•  socket <br>
+•  sys <br> 
+•  struct <br>
+•  signal <br>
+•  time <br>
+•  select <br> 
+•  pandas  <br>
+•  numpy <br>
+•  matplotlib.pyplot  <br>
 All Libaries are either default packages or easy to install with pip install
 
 
 ## Setup
-Beside the mentioned packages, you only need configure the ip adresse and port of the chat server and to set a username. All can be passed over as startup arguments. If no username is provided you can enter one on launch.
-
+The IP Address, Port and Username is requested on startup of the Client. Therefore, beside the previous mentioned requirements nothing more needs to be cared about.
 
 ## Usage
-
+Run the server script on the local machine or on a server which is exposed to the internet. After that run the client script(s) to connect to the server.
+After entering IP, Port and username you are free to chat with everyone involved.
+Due to limited resources you most likely want to run it on "localhost" to be able to test it on a single machine. 
+You can still execute the chat client in multiple instances
 
 
 
