@@ -163,9 +163,9 @@ def sendto_all(msg):
         sock.sendto(msg, user)
 
 def ping_clients():
-'''
-Checks if the user is still connected to the server, otherwise disconnects user
-'''
+    '''
+    Checks if the user is still connected to the server, otherwise disconnects user
+    '''
     
     for user in list(connections):
         #Increment number of send keep alives
@@ -201,9 +201,9 @@ def disconnect(user):
     print("[Status] " + ccolor.BOLD + username + " left the server." + ccolor.ENDC)
 
 def send_user_list(user):
-'''
-    Sends the list of current connected users to the user which requested it
-'''
+    '''
+        Sends the list of current connected users to the user which requested it
+    '''
     msg = struct.pack(f"!BH", MSG.SV_USER_REP, len(connections))
     for u in list(connections):
         username = connections[u]
@@ -240,8 +240,8 @@ def store_info(message, user, userIP):
         Adds the message into the pandas dataframe and stores it with corresponding IP and Username
    '''
 
-    new_row = [user,userIP[0], message, np.datetime64('now')]
-    data_storage.loc[len(data_storage)] = new_row
+   new_row = [user,userIP[0], message, np.datetime64('now')]
+   data_storage.loc[len(data_storage)] = new_row
 
 
 def printStats():
@@ -251,7 +251,6 @@ def printStats():
 
     grp = data_storage.groupby(by=[data_storage.time_of_message.map(lambda x: (x.hour, x.minute))])
     grouped = grp.count()
-    print(grouped[['user']])
     plt.figure()
     graph = grouped.plot(legend=False)
     graph.set_xlabel("Time of Message in CET+0'")
