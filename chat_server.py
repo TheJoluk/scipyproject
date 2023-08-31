@@ -163,6 +163,10 @@ def sendto_all(msg):
         sock.sendto(msg, user)
 
 def ping_clients():
+'''
+Checks if the user is still connected to the server, otherwise disconnects user
+'''
+    
     for user in list(connections):
         #Increment number of send keep alives
         keep_alives[user] = keep_alives[user] + 1
@@ -197,7 +201,9 @@ def disconnect(user):
     print("[Status] " + ccolor.BOLD + username + " left the server." + ccolor.ENDC)
 
 def send_user_list(user):
-
+'''
+    Sends the list of current connected users to the user which requested it
+'''
     msg = struct.pack(f"!BH", MSG.SV_USER_REP, len(connections))
     for u in list(connections):
         username = connections[u]
@@ -209,6 +215,10 @@ def send_user_list(user):
 
 
 def send_msg(data, user):
+    '''
+        Prepares the message to be send out to all other users
+        and passes over the message to the pandas storage
+    '''
     recv_msg_len = struct.unpack("!I", data[0:4])[0]
     recv_msg = struct.unpack(f"!{recv_msg_len}s", data[4:4 + recv_msg_len])[0].decode("utf-8")
 
@@ -226,14 +236,18 @@ def send_msg(data, user):
 
 
 def store_info(message, user, userIP):
-    # Add Message into Pandas
+   '''
+        Adds the message into the pandas dataframe and stores it with corresponding IP and Username
+   '''
 
     new_row = [user,userIP[0], message, np.datetime64('now')]
     data_storage.loc[len(data_storage)] = new_row
 
 
 def printStats():
-    #Create Diagram from Pandas
+    '''
+        Creates statistics to the currently stored messages
+    '''
 
     grp = data_storage.groupby(by=[data_storage.time_of_message.map(lambda x: (x.hour, x.minute))])
     grouped = grp.count()
@@ -249,6 +263,9 @@ def printStats():
 
 
 def handle_input(data):
+    '''
+        Handles function calls at the server script and provides with requested functionality
+    '''
     if data == "help":
         print(ccolor.BOLD + " List of all commands:" + ccolor.ENDC)
         print(ccolor.BOLD + "  help        Prints all commands." + ccolor.ENDC)
