@@ -325,8 +325,7 @@ def read_arguments():
             continue
         invalid = False
 
-    #serv = "localhost"
-    #port = 55555
+
     return user, serv, port
 
 if __name__ == "__main__":
