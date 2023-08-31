@@ -1,18 +1,18 @@
 
 ## Motivation
 The Motivation is to create a simple console based chat service with python3. 
-The Chat Client saves all send messages of all users with the corresponding ip adresse to run statistics about the usage and messages.
+The Chat Client saves all send messages of all users with the corresponding ip address to run statistics about the usage and messages.
 
 ## Goal
 The Goal is to create a Chat Client and Server with Python3. The Chat Services should be able to be able to deal with multiple users.
-The User can setup Username, ServerIP and ServerPort on startup to decide to which server he wants to connect with which username.
-During the chat prozess all chat messages are getting stored in a pandas dataframe to run statistics on them. 
+The User can set up Username, ServerIP and ServerPort on startup to decide to which server he wants to connect with which username.
+During the chat process all chat messages are getting stored in a pandas dataframe to run statistics on them. 
 As an example the statics of messages per minute is getting printed on request.
 
 ## Structure
 The project contains two files, the server and the client.
-The server file provides the backbone of the chat service which takes all the messages send and broadcast them to all the other currently connecte clients.
-Fruthermore the server tracks the message history of all clients.
+The server file provides the backbone of the chat service which takes all the messages send and broadcast them to all the other currently connect clients.
+Furthermore, the server tracks the message history of all clients.
 
 The client file provides an easy use to connect to the server and to set the username of the user. 
 Beside that the client offers the possibility to request a list of all currently connected users.
@@ -20,7 +20,7 @@ Beside that the client offers the possibility to request a list of all currently
 ## Requirements
 The Chat Service only runs on Linux based operating system due to limitation on the unblocking reading of commandline inputs on windows.
 That means on windows the python script is not running.
-Beside the Linux requirement the project needs following python libaries available. <br>
+Beside the Linux requirement the project needs following python libraries available. <br>
 •  socket <br>
 •  sys <br> 
 •  struct <br>
