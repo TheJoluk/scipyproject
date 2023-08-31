@@ -30,7 +30,7 @@ Beside the Linux requirement the project needs following python libraries availa
 •  pandas  <br>
 •  numpy <br>
 •  matplotlib.pyplot  <br>
-All Libaries are either default packages or easy to install with pip install
+All libraries are either default packages or easy to install with pip install
 
 
 ## Setup
@@ -46,5 +46,10 @@ You can still execute the chat client in multiple instances.
 For additional functionalities you can type /help into the client to get a list on all available commands with an explanation.
 Similar to that you can type "help" without slash into the server program to list all available commands with an explanation.
 
+## Future Improvements
 
-
+This project can be extended in the future by adding additional commands. Some example would be to change nickname while running the client, change to server ip on the fly 
+or change color in which certain users are display. 
+Beside that the available statistics on the server side can be enhanced by analysing the language used, 
+track the location of users or just by tracking the currently connected users additional to  send messages.
+This project provides a good foundation for adding additional functionality.
