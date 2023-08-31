@@ -40,6 +40,10 @@ The IP Address, Port and Username is requested on startup of the Client. Therefo
 Run the server script on the local machine or on a server which is exposed to the internet. After that run the client script(s) to connect to the server.
 After entering IP, Port and username you are free to chat with everyone involved.
 
+To run the scripts use:
+*python3 chat_server.py*
+*python3 chat_client.py*
+
 Due to limited resources you most likely want to run it on "localhost" to be able to test it on a single machine. 
 You can still execute the chat client in multiple instances.
 
