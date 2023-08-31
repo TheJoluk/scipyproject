@@ -303,7 +303,7 @@ def read_arguments():
             invalid = False
 
     # There is the potential to host the server somewhere else then the localhost. Not implemented further.
-    '''
+
     invalid = True
     while invalid:
         serv = input(ccolor.BOLD + "Enter the ip of the server: " + ccolor.ENDC)
@@ -324,9 +324,9 @@ def read_arguments():
         except BaseException:
             continue
         invalid = False
-    '''
-    serv = "localhost"
-    port = 55555
+
+    #serv = "localhost"
+    #port = 55555
     return user, serv, port
 
 if __name__ == "__main__":

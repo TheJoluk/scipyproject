@@ -207,6 +207,7 @@ def send_user_list(user):
 
     print("[STATUS] " + ccolor.BOLD + connections[user] + " requested user list." + ccolor.ENDC)
 
+
 def send_msg(data, user):
     recv_msg_len = struct.unpack("!I", data[0:4])[0]
     recv_msg = struct.unpack(f"!{recv_msg_len}s", data[4:4 + recv_msg_len])[0].decode("utf-8")
@@ -225,14 +226,14 @@ def send_msg(data, user):
 
 
 def store_info(message, user, userIP):
-    ''' Add Message into Pandas'''
+    # Add Message into Pandas
 
     new_row = [user,userIP[0], message, np.datetime64('now')]
     data_storage.loc[len(data_storage)] = new_row
 
 
 def printStats():
-    '''Create Diagram to Pandas Table'''
+    #Create Diagram from Pandas
 
     grp = data_storage.groupby(by=[data_storage.time_of_message.map(lambda x: (x.hour, x.minute))])
     grouped = grp.count()
