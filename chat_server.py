@@ -289,8 +289,7 @@ if __name__ == "__main__":
 
     #Create signal handler for SIGINT
     signal.signal(signal.SIGINT, on_SIGINT)
-    #Create Pandas
-    #data_storage = pd.DataFrame(columns=['time_of_message', 'message', 'user'])
+    #Create Pandas Dataframe
     dtypes = np.dtype(
         [
             ("user", str),
